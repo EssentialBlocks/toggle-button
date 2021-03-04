@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "./style.scss";
 
-const ToggleButton = ({ options, focusColor, onChange }) => {
-	const [selected, setSelected] = useState(options[0]);
+const ToggleButton = ({ options, focusColor, onChange, defaultSelected }) => {
+	const [selected, setSelected] = useState(defaultSelected || options[0]);
 
 	useEffect(() => {
 		onChange(selected.value);
@@ -21,7 +21,7 @@ const ToggleButton = ({ options, focusColor, onChange }) => {
 					/>
 					<span
 						style={{
-							color: selected.value === option.value ? "white" : "black",
+							color: selected.value === option.value ? "white" : "black"
 						}}
 					>
 						{option.label}
@@ -33,7 +33,7 @@ const ToggleButton = ({ options, focusColor, onChange }) => {
 				style={{
 					backgroundColor: "#551ef7",
 					transform:
-						selected == options[0] ? "translateX(0)" : "translateX(100%)",
+						selected == options[0] ? "translateX(0)" : "translateX(100%)"
 				}}
 			/>
 		</div>
