@@ -8,6 +8,10 @@ const ToggleButton = ({ options, focusColor, onChange, defaultSelected }) => {
 		onChange(selected.value);
 	}, [selected]);
 
+	useEffect(() => {
+		setSelected(defaultSelected);
+	}, [defaultSelected]);
+  
 	return (
 		<div id="switch" className="eb-switch-control">
 			{options.map((option, index) => (
