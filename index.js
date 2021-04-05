@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./style.scss";
 
-const ToggleButton = ({ options, focusColor, onChange, defaultSelected }) => {
+const ToggleButton = ({ options, onChange, defaultSelected }) => {
   const [selected, setSelected] = useState(defaultSelected || options[0]);
 
   useEffect(() => {
@@ -16,10 +16,9 @@ const ToggleButton = ({ options, focusColor, onChange, defaultSelected }) => {
 
   return (
     <div id="switch" className="eb-switch-control">
-      {options.map((option, index) => (
+      {options.map((option) => (
         <label>
           <input
-            className={index ? "individual" : "business"}
             type="radio"
             name="gh"
             placeholder="name"
