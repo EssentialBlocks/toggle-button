@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import "./style.scss";
+import { useEffect, useState } from "@wordpress/element";
 
 const ToggleButton = ({ options, onChange, defaultSelected }) => {
   const [selected, setSelected] = useState(defaultSelected || options[0]);
