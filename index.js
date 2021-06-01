@@ -1,4 +1,4 @@
-import { useEffect, useState } from "@wordpress/element";
+const { useEffect, useState } = wp.element;
 
 const ToggleButton = ({ options, onChange, defaultSelected }) => {
   const [selected, setSelected] = useState(defaultSelected || options[0]);
