@@ -1,8 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./style.scss";
+
+let toggleCount = 0;
 
 const ToggleButton = ({ options, onChange, defaultSelected }) => {
   const [selected, setSelected] = useState(defaultSelected || options[0]);
+  // One radio group per toggle: a shared name made several toggles on the same
+  // screen behave as a single group.
+  const groupName = useRef(null);
+  if (groupName.current === null) {
+    groupName.current = `eb-switch-${++toggleCount}`;
+  }
 
   useEffect(() => {
     onChange(selected.value);
@@ -15,13 +23,13 @@ const ToggleButton = ({ options, onChange, defaultSelected }) => {
   }, [defaultSelected]);
 
   return (
-    <div id="switch" className="eb-switch-control">
+    <div className="eb-switch-control">
       {options.map((option) => (
-        <label>
+        <label key={option.value}>
           <input
             type="radio"
-            name="gh"
-            placeholder="name"
+            name={groupName.current}
+            checked={selected.value === option.value}
             onChange={() => setSelected(option)}
           />
           <span
@@ -38,7 +46,9 @@ const ToggleButton = ({ options, onChange, defaultSelected }) => {
         style={{
           backgroundColor: "#551ef7",
           transform:
-            selected == options[0] ? "translateX(0)" : "translateX(100%)",
+            selected.value === options[0].value
+              ? "translateX(0)"
+              : "translateX(100%)",
         }}
       />
     </div>
